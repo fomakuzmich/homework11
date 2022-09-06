@@ -61,6 +61,22 @@ public class MyTime {
 		}
 	}
 	
+	public MyTime(int hours, int minutes) {
+		if (hours < 0 || hours > 23) {
+			this.hours = 0;
+		}
+		else {
+			this.hours = hours;
+		}
+		if (minutes < 0 || minutes > 59) {
+			this.minutes = 0;
+		}
+		else {
+			this.minutes = minutes;
+		}
+		this.seconds = 0;
+	}
+	
 	public MyTime() {
 		this.hours = 0;
 		this.minutes = 0;
