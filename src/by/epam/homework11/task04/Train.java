@@ -2,15 +2,18 @@ package by.epam.homework11.task04;
 
 import java.util.Arrays;
 
+import by.epam.homework11.task06.MyTime;
+
 public class Train implements Comparable<Train>{
 	
 	String finalDestination;
-	int number;
-	double time;
+	private int number;
+	//double time;
+	private MyTime time;
 	
 	@Override
 	public String toString() {
-		return number + " : " + finalDestination + " : " + time;
+		return number + " - " + finalDestination + " - " + time;
 	}
 	
 	public String getFinalDestination() {
@@ -27,18 +30,25 @@ public class Train implements Comparable<Train>{
 		this.number = number;
 	}
 	
-	public double getTime() {
+	public MyTime getTime() {
 		return time;
 	}
-	public void setTime(double time) {
+	public void setTime(MyTime time) {
 		this.time = time;
 	}
 	
-	public Train(String finalDestination, int number, double time) {
-		super();
+	public Train(String finalDestination, int number, MyTime time) {
+		
 		this.finalDestination = finalDestination;
 		this.number = number;
 		this.time = time;
+	}
+	
+	public Train(String finalDestination, int number, int hours, int minutes) {
+		
+		this.finalDestination = finalDestination;
+		this.number = number;
+		this.time = new MyTime(hours, minutes);
 	}
 	
 	public void getInfo(int number, Train[] trains) {
@@ -78,7 +88,14 @@ public class Train implements Comparable<Train>{
 	@Override
 	public int compareTo(Train t) {
 		if (this.finalDestination.equals(t.getFinalDestination())) {
-			return (int)((this.time*100) - (t.getTime()*100));
+			if (this.getTime().getHours() != time.getHours()) {
+				return this.getTime().getHours() - t.getTime().getHours();
+			}
+			else if (this.getTime().getMinutes() != t.getTime().getMinutes()) {
+				return this.getTime().getMinutes() - t.getTime().getMinutes();
+			}
+			else {
+				return this.getTime().getSeconds() - t.getTime().getSeconds();}
 		}
 		else {
 			return this.finalDestination.compareTo(t.getFinalDestination());
