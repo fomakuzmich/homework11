@@ -1,24 +1,41 @@
 package by.epam.homework11.task09;
 
+import java.util.ArrayList;
+
 public class Main {
 
 	public static void main(String[] args) {
 		
-		Book one = new Book("1984", "Oruel", "Secker and Warburg", 1949, 321, 20, "soft cover");
-		Book two = new Book("We", "Zamyatin", "Chehova", 1924, 415, 15, "hard cover");
-		Book three = new Book("Brave new world", "Huxley", "Chatto & Windus", 1932, 182, 12, "soft cover");
-		Book four = new Book("Fahrenheit 451", "Bradbury", "Ballantine books", 1953, 254, 16, "soft cover");
-		Book five = new Book("More than noize", "O'Hara", "AK Press", 1999, 321, 17, "soft cover");
-		Book six = new Book("The prison house", "King", "Vintage", 2004, 247, 19, "soft cover");
-		Book seven = new Book("Trainspotting", "Welsh", "Harvill Secker", 1993, 401, 21, "hard cover");
+		Book one = new Book("1984", "Oruel", "Secker and Warburg", 1949, 321, 20, false);
+		Book two = new Book("We", "Zamyatin", "Chehova", 1924, 415, 15, true);
+		Book three = new Book("Brave new world", "Huxley", "Chatto & Windus", 1932, 182, 12, false);
+		Book four = new Book("Fahrenheit 451", "Bradbury", "Ballantine books", 1953, 254, 16, false);
+		Book five = new Book("More than noize", "O'Hara", "AK Press", 1999, 321, 17, false);
+		Book six = new Book("The prison house", "King", "Vintage", 2004, 247, 19, false);
+		Book seven = new Book("Trainspotting", "Welsh", "Harvill Secker", 1993, 401, 21, true);
+		Book eight = new Book("Animal farm", "Oruel", "Harvill Secker", 1945, 177, 14, false);
+		Book nine = new Book("Dandelion wine", "Bradbury", "Doubleday", 1957, 246, 18, true);
+		Book ten = new Book("Headhunters", "King", "Jonathan Cape", 1997, 287, 16, false);
+		Book eleven = new Book("Fight club", "Palahniuk", "Norton & Co", 1996, 256, 24, false);
+		Book twelve = new Book("Survivor", "Palahniuk", "Norton & Co", 1999, 320, 17, false);
+		Book thirteen = new Book("The acid house", "Welsh", "Harvill Secker", 1994, 316, 17, false);
+		Book fourteen = new Book("Glue", "Welsh", "Harvill Secker", 2001, 720, 27, true);
 		
-		Book[] books = new Book[] {one, two, three, four, five, six, seven};
-		for (Book x : books) {
-			System.out.println(x);
+		BookStore libruary = new BookStore(one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen);
+		
+		Main.printBooks(libruary.getBooksAfterYear(2000));
+		Main.printBooks(libruary.getBooksFromAutor("Bradbury"));
+		Main.printBooks(libruary.getBooksFromPublishing("Harvill Secker"));
+		
+		
+	}
+	
+	public static void printBooks(ArrayList<Book> books) {
+		for (Book book : books) {
+			System.out.println("id: " + book.getId() + ", \"" + book.getName() + "\", " + book.getAutors() + ", " + book.getPublishing() + ", " + 
+								book.getYear() + ", " + book.getPages() + "pgs, " + book.getBinding().getBlinding() + ", $" + book.getPrice());
 		}
-		Book.booksFromAutor(books, "King");
-		Book.booksFromPublishing(books, "Vintage");
-		Book.booksAfterYear(books, 2000);
+		System.out.println();
 	}
 
 }
