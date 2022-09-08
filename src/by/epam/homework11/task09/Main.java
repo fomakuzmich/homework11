@@ -1,7 +1,5 @@
 package by.epam.homework11.task09;
 
-import java.util.ArrayList;
-
 public class Main {
 
 	public static void main(String[] args) {
@@ -23,19 +21,11 @@ public class Main {
 		
 		BookStore libruary = new BookStore(one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen);
 		
-		Main.printBooks(libruary.getBooksAfterYear(2000));
-		Main.printBooks(libruary.getBooksFromAutor("Bradbury"));
-		Main.printBooks(libruary.getBooksFromPublishing("Harvill Secker"));
+		OutputBook.printBooks(libruary.getBooksAfterYear(2000));
+		OutputBook.printBooks(libruary.getBooksFromAutor("Bradbury"));
+		OutputBook.printBooks(libruary.getBooksFromPublishing("Harvill Secker"));
 		
 		
 	}
 	
-	public static void printBooks(ArrayList<Book> books) {
-		for (Book book : books) {
-			System.out.println("id: " + book.getId() + ", \"" + book.getName() + "\", " + book.getAutors() + ", " + book.getPublishing() + ", " + 
-								book.getYear() + ", " + book.getPages() + "pgs, " + book.getBinding().getBlinding() + ", $" + book.getPrice());
-		}
-		System.out.println();
-	}
-
 }

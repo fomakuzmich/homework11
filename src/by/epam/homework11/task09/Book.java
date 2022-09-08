@@ -1,9 +1,15 @@
 package by.epam.homework11.task09;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Book {
+public class Book implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private static int idCounter = 0;
 	
 	private int id;
@@ -17,7 +23,7 @@ public class Book {
 	
 	
 	public Book(String name, String autors, String publishing, int year, int pages, int price, boolean binding) {
-		this.id = ++idCounter;
+		this.id = this.generateID(++idCounter, year, pages);
 		this.name = name;
 		this.autors = autors;
 		this.publishing = publishing;
@@ -28,7 +34,7 @@ public class Book {
 	}
 
 	public Book() {
-		this.id = ++idCounter;
+		this.id = this.generateID(++idCounter, 0, 0);
 		this.name = "No name";
 		this.autors = "Unknown";
 		this.publishing = "Unknown";
@@ -36,6 +42,11 @@ public class Book {
 		this.pages = 0;
 		this.price = 0;
 		this.binding = new Cover();
+	}
+	
+	public int generateID(int idCounter, int year, int pages) {
+		int id = idCounter * 10000000 + year * 1000 + pages;
+		return id;
 	}
 	
 	

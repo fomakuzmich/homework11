@@ -1,13 +1,17 @@
 package by.epam.homework11.task09;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Cover {
+public class Cover implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	private boolean hardOrSoft;
 	private String blinding;
-	
-	
 	
 	public Cover(boolean hardOrSoft) {
 		this.hardOrSoft = hardOrSoft;

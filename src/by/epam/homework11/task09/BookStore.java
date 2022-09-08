@@ -1,37 +1,45 @@
 package by.epam.homework11.task09;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
-public class BookStore {
+public class BookStore implements Serializable{
 	
-	private ArrayList<Book> books;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private List<Book> books;
 	
 		
 	public BookStore(Book...books) {
 		this.books = new ArrayList<Book>();
+		
 		for (Book book : books) {
 			this.addBookToBooks(book);
 		}
 	}
-	public BookStore(ArrayList<Book> books) {
+	public BookStore(List<Book> books) {
 		this.books = books;
 	}
 	public BookStore() {
 		this.books = new ArrayList<Book>();
 	}
-	public ArrayList<Book> getBooks() {
+	public List<Book> getBooks() {
 		return books;
 	}
-	public void setBooks(ArrayList<Book> books) {
+	public void setBooks(List<Book> books) {
 		this.books = books;
 	}
 	public void addBookToBooks(Book book) {
 		this.books.add(book);
 	}
 	
-	public ArrayList<Book> getBooksFromAutor(String autor) {
+	public List<Book> getBooksFromAutor(String autor) {
 		
-		ArrayList<Book> booksFromAutor = new ArrayList<>();
+		List<Book> booksFromAutor = new ArrayList<>();
 		
 		for (Book book : this.books) {
 			if (book.getAutors().equals(autor)) {
@@ -41,8 +49,8 @@ public class BookStore {
 		return booksFromAutor;
 	}
 	
-	public ArrayList<Book> getBooksFromPublishing(String publishing) {
-		ArrayList<Book> booksFromPublishing = new ArrayList<>();
+	public List<Book> getBooksFromPublishing(String publishing) {
+		List<Book> booksFromPublishing = new ArrayList<>();
 		
 		for (Book book : this.books) {
 			if (book.getPublishing().equals(publishing)) {
@@ -52,8 +60,8 @@ public class BookStore {
 		return booksFromPublishing;
 	}
 	
-	public ArrayList<Book> getBooksAfterYear(int year) {
-		ArrayList<Book> booksAfterYear = new ArrayList<>();
+	public List<Book> getBooksAfterYear(int year) {
+		List<Book> booksAfterYear = new ArrayList<>();
 		
 		for (Book book : this.books) {
 			if (book.getYear() >= year) {
@@ -61,6 +69,25 @@ public class BookStore {
 			}
 		}
 		return booksAfterYear;
+	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(books);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BookStore other = (BookStore) obj;
+		return Objects.equals(books, other.books);
+	}
+	@Override
+	public String toString() {
+		return "BookStore [books=" + books + "]";
 	}
 	
 	
